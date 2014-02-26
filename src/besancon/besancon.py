@@ -20,6 +20,15 @@ class Besancon(object):
         self.spectral_type_limits = [lower_spectral_type,
                 upper_spectral_type]
 
+    def add_magnitude_limit(self, passband, bright=None, faint=None):
+        bright_limit = bright if bright else self.magnitude_limits[passband][0]
+        faint_limit = faint if faint else self.magnitude_limits[passband][1]
+
+        if bright_limit > faint_limit:
+            faint_limit, bright_limit = bright_limit, faint_limit
+
+        self.magnitude_limits[passband] = [bright_limit, faint_limit]
+
     def query(self, *args, **kwargs):
         raise RuntimeError("no email set")
 

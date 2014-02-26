@@ -80,3 +80,7 @@ class TestMagnitudeLimits(BesanconTester):
     def test_do_nothing(self):
         self.b.add_magnitude_limit("J")
         assert self.b.magnitude_limits['J'] == [-99.0, 99.0]
+
+
+class TestQuery(BesanconTester):
+    pass

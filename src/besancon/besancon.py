@@ -1,16 +1,20 @@
 from .spectraltype import SpectralType
 
+
 class Besancon(object):
     def __init__(self, email=None):
         self.email = email
         self.spectral_type_limits = [SpectralType.LOWER_LIMIT,
                 SpectralType.UPPER_LIMIT]
-    
+
     def limit_spectral_type(self, lower=None, upper=None):
         lower_spectral_type = (SpectralType.from_string(lower) if lower
                 else SpectralType.LOWER_LIMIT)
         upper_spectral_type = (SpectralType.from_string(upper) if upper
                 else SpectralType.UPPER_LIMIT)
+
+        if upper_spectral_type < lower_spectral_type:
+            lower_spectral_type, upper_spectral_type = upper_spectral_type, lower_spectral_type
 
         self.spectral_type_limits = [lower_spectral_type,
                 upper_spectral_type]

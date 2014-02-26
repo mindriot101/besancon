@@ -40,3 +40,9 @@ class TestSpectralType(BesanconTester):
         self.b.limit_spectral_type(upper="5.1")
         assert self.b.spectral_type_limits == [SpectralType("O", 0),
                 SpectralType("G", 1)]
+
+    def test_correct_way_round(self):
+        self.b.limit_spectral_type(lower="5.1", upper="1.2")
+        assert self.b.spectral_type_limits == [SpectralType("O", 2),
+                SpectralType("G", 1)]
+

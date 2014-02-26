@@ -12,6 +12,18 @@ class SpectralType(object):
             "9": "DA",
             }
 
+    reverse_map = {
+            "O": "1",
+            "B": "2",
+            "A": "3",
+            "F": "4",
+            "G": "5",
+            "K": "6",
+            "M": "7",
+            "C": "8",
+            "DA": "9",
+            }
+
     def __init__(self, spectral_class, spectral_subclass):
         self.spectral_class = spectral_class
         self.spectral_subclass = spectral_subclass
@@ -27,6 +39,20 @@ class SpectralType(object):
     def __eq__(self, other):
         return (self.spectral_class == other.spectral_class and
                 self.spectral_subclass == other.spectral_subclass)
+
+    def __lt__(self, other):
+        if self == other:
+            return False
+
+        if self.reverse_map[self.spectral_class] < self.reverse_map[other.spectral_class]:
+            return True
+        elif self.reverse_map[self.spectral_class] > self.reverse_map[other.spectral_class]:
+            return False
+        else:
+            return self.spectral_subclass < other.spectral_subclass
+
+    def __repr__(self):
+        return '.'.join(map(str, [self.spectral_class, self.spectral_subclass]))
 
 
 SpectralType.LOWER_LIMIT = SpectralType("O", 0)

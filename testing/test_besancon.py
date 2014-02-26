@@ -5,12 +5,12 @@ import pytest
 
 
 def setup_module(module):
-    module.BESANCON = Besancon(email='test@example.com')
+    module.BESANCON = lambda: Besancon(email='test@example.com')
 
 
 class BesanconTester(TestCase):
     def setUp(self):
-        self.b = BESANCON
+        self.b = BESANCON()
 
 
 class TestEmail(BesanconTester):

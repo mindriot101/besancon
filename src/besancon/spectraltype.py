@@ -27,3 +27,7 @@ class SpectralType(object):
     def __eq__(self, other):
         return (self.spectral_class == other.spectral_class and
                 self.spectral_subclass == other.spectral_subclass)
+
+
+SpectralType.LOWER_LIMIT = SpectralType("O", 0)
+SpectralType.UPPER_LIMIT = SpectralType("DA", 9)

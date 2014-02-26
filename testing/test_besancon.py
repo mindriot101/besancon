@@ -46,6 +46,10 @@ class TestSpectralType(BesanconTester):
         assert self.b.spectral_type_limits == [SpectralType("O", 2),
                 SpectralType("G", 1)]
 
+    def test_default_spectral_type_limits(self):
+        assert self.b.spectral_type_limits == [SpectralType("O", 0),
+                SpectralType("DA", 9)]
+
 
 class TestMagnitudeLimits(BesanconTester):
     def test_default_magnitude_limits(self):

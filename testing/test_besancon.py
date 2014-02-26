@@ -30,3 +30,13 @@ class TestSpectralType(BesanconTester):
         self.b.limit_spectral_type("1.0", "9.5")
         assert self.b.spectral_type_limits == [SpectralType("O", 0),
                 SpectralType("DA", 5)]
+
+    def test_set_single_lower_value(self):
+        self.b.limit_spectral_type("3.2")
+        assert self.b.spectral_type_limits == [SpectralType("A", 2),
+                SpectralType("DA", 9)]
+
+    def test_set_single_upper_value(self):
+        self.b.limit_spectral_type(upper="5.1")
+        assert self.b.spectral_type_limits == [SpectralType("O", 0),
+                SpectralType("G", 1)]

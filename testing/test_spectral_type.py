@@ -13,4 +13,3 @@ def test_lower_limit():
 
 def test_upper_limit():
     assert SpectralType.UPPER_LIMIT == SpectralType("DA", 9)
-

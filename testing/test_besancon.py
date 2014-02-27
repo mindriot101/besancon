@@ -135,7 +135,7 @@ class TestLuminosityClasses(BesanconTester):
         assert self.b.luminosity_classes == [1, 2, 3, 4, 5, 6, 7]
 
     def test_change_classes(self):
-        self.b.set_luminosity_clases(range(1, 6))
+        self.b.set_luminosity_clases([1, 2, 3, 4, 5])
         assert self.b.luminosity_classes == [1, 2, 3, 4, 5]
 
     def test_error_with_invalid_classes(self):

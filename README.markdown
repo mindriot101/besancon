@@ -1,4 +1,4 @@
-Besancon parser
+Besançon parser
 ===============
 
 [![Build Status](https://travis-ci.org/mindriot101/besancon.png?branch=master)](https://travis-ci.org/mindriot101/besancon)

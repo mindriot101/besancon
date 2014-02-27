@@ -7,6 +7,7 @@ class Besancon(object):
         self.spectral_type_limits = [SpectralType.LOWER_LIMIT,
                 SpectralType.UPPER_LIMIT]
         self.magnitude_limits = self.setup_magnitude_limits()
+        self.colour_limits = self.setup_colour_limits()
 
     def limit_spectral_type(self, lower=None, upper=None):
         lower_spectral_type = (SpectralType.from_string(lower) if lower
@@ -29,8 +30,30 @@ class Besancon(object):
 
         self.magnitude_limits[passband] = [bright_limit, faint_limit]
 
+    def add_colour_limit(self, index, colour, lower=None, upper=None):
+        if lower is None and upper is None:
+            return self
+
+        if not 0 <= index <= 3:
+            raise RuntimeError("Invalid index {}, must be 0-3".format(index))
+
+        old_colour_limits = self.colour_limits[index][-2:]
+        lower_value = lower if lower is not None else old_colour_limits[0]
+        upper_value = upper if upper is not None else old_colour_limits[1]
+
+        self.colour_limits[index] = (colour, lower_value, upper_value)
+
     def query(self, *args, **kwargs):
         raise RuntimeError("no email set")
+
+    @staticmethod
+    def setup_colour_limits():
+        return [
+                ('B-V', -99.0, 99.0),
+                ('U-B', -99.0, 99.0),
+                ('V-I', -99.0, 99.0),
+                ('V-K', -99.0, 99.0),
+                ]
 
     @staticmethod
     def setup_magnitude_limits():

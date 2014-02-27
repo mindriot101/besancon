@@ -81,6 +81,50 @@ class TestMagnitudeLimits(BesanconTester):
         self.b.set_magnitude_limit("J")
         assert self.b.magnitude_limits['J'] == [-99.0, 99.0]
 
+class TestColourLimits(BesanconTester):
+    def test_default_limits(self):
+        assert self.b.colour_limits == [
+                ('B-V', -99.0, 99.0),
+                ('U-B', -99.0, 99.0),
+                ('V-I', -99.0, 99.0),
+                ('V-K', -99.0, 99.0),
+                ]
+
+    def test_set_limit(self):
+        self.b.add_colour_limit(0, 'J-H', 0.0, 1.2)
+        assert self.b.colour_limits == [
+                ('J-H', 0.0, 1.2),
+                ('U-B', -99.0, 99.0),
+                ('V-I', -99.0, 99.0),
+                ('V-K', -99.0, 99.0),
+                ]
+
+    def test_only_one(self):
+        self.b.add_colour_limit(0, 'J-H', lower=0.0)
+        assert self.b.colour_limits == [
+                ('J-H', 0.0, 99.0),
+                ('U-B', -99.0, 99.0),
+                ('V-I', -99.0, 99.0),
+                ('V-K', -99.0, 99.0),
+                ]
+
+    def test_neither(self):
+        before = self.b.colour_limits
+        self.b.add_colour_limit(0, 'J-H')
+        assert self.b.colour_limits == before
+
+    def test_invalid_index(self):
+        with pytest.raises(RuntimeError) as err:
+            self.b.add_colour_limit(-1, 'J-H', 0.1, 0.5)
+
+        assert "invalid index -1, must be 0-3" in str(err).lower()
+
+        with pytest.raises(RuntimeError) as err:
+            self.b.add_colour_limit(5, 'J-H', 0.1, 0.5)
+
+        assert "invalid index 5, must be 0-3" in str(err).lower()
+
+
 
 class TestQuery(BesanconTester):
     pass

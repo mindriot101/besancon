@@ -18,7 +18,7 @@ from besancon import Besancon
 b = Besancon(email="test@example.com")
 b.limit_spectral_type("1.0", "9.5")
 b.set_magnitude_limit("V", 10.0, 100.0)
-b.add_colour_limit("J-H", 0.3)
+b.add_colour_limit(0, "J-H", 0.3)
 b.query(lat=20.3, long=51.2, area=64.0)
 ```
 

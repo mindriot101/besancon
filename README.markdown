@@ -1,3 +1,11 @@
+Besancon parser
+===============
+
+[![Build Status](https://travis-ci.org/mindriot101/besancon.png?branch=master)](https://travis-ci.org/mindriot101/besancon)
+
+*Massive work in progress...*
+
+
 For querying the Besançon model generation system
 
 Usage

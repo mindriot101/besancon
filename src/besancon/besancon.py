@@ -36,12 +36,12 @@ class Besancon(object):
             return self
 
         if not 0 <= index <= 3:
-            raise RuntimeError("Invalid index {}, must be 0-3".format(index))
+            raise RuntimeError("Invalid index {0}, must be 0-3".format(index))
 
         colour = colour.upper()
 
         if not Colour.valid_colour(colour):
-            msg = "Invalid colour: {} (magnitues must be UBVRIJHKL)".format(colour)
+            msg = "Invalid colour: {0} (magnitues must be UBVRIJHKL)".format(colour)
             raise RuntimeError(msg)
 
 

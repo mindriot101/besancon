@@ -2,6 +2,7 @@ Besançon parser
 ===============
 
 [![Build Status](https://travis-ci.org/mindriot101/besancon.png?branch=master)](https://travis-ci.org/mindriot101/besancon)
+[![Code Health](https://landscape.io/github/mindriot101/besancon/master/landscape.png)](https://landscape.io/github/mindriot101/besancon/master)
 
 *Massive work in progress...*
 

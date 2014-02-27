@@ -124,7 +124,11 @@ class TestColourLimits(BesanconTester):
 
         assert "invalid index 5, must be 0-3" in str(err).lower()
 
+    def test_invalid_colour(self):
+        with pytest.raises(RuntimeError) as err:
+            self.b.add_colour_limit(0, "A-Q", 0.1, 0.5)
 
+        assert "invalid colour: a-q" in str(err).lower()
 
 class TestQuery(BesanconTester):
     pass

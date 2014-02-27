@@ -1,4 +1,5 @@
 from .spectraltype import SpectralType
+from .colour import Colour
 
 
 class Besancon(object):
@@ -36,6 +37,13 @@ class Besancon(object):
 
         if not 0 <= index <= 3:
             raise RuntimeError("Invalid index {}, must be 0-3".format(index))
+
+        colour = colour.upper()
+
+        if not Colour.valid_colour(colour):
+            msg = "Invalid colour: {} (magnitues must be UBVRIJHKL)".format(colour)
+            raise RuntimeError(msg)
+
 
         old_colour_limits = self.colour_limits[index][-2:]
         lower_value = lower if lower is not None else old_colour_limits[0]

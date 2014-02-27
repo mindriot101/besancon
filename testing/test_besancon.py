@@ -65,20 +65,20 @@ class TestMagnitudeLimits(BesanconTester):
                 'L': [-99.0, 99.0],
                 }
 
-    def test_add_magnitude_limit(self):
-        self.b.add_magnitude_limit("V", 5.0, 7.0)
+    def test_set_magnitude_limit(self):
+        self.b.set_magnitude_limit("V", 5.0, 7.0)
         assert self.b.magnitude_limits['V'] == [5.0, 7.0]
 
     def test_add_single_limit(self):
-        self.b.add_magnitude_limit("B", bright=10.0)
+        self.b.set_magnitude_limit("B", bright=10.0)
         assert self.b.magnitude_limits['B'] == [10.0, 99.0]
 
     def test_add_wrong_way_round(self):
-        self.b.add_magnitude_limit("U", 12.0, 3.0)
+        self.b.set_magnitude_limit("U", 12.0, 3.0)
         assert self.b.magnitude_limits['U'] == [3.0, 12.0]
 
     def test_do_nothing(self):
-        self.b.add_magnitude_limit("J")
+        self.b.set_magnitude_limit("J")
         assert self.b.magnitude_limits['J'] == [-99.0, 99.0]
 
 

@@ -20,7 +20,7 @@ class Besancon(object):
         self.spectral_type_limits = [lower_spectral_type,
                 upper_spectral_type]
 
-    def add_magnitude_limit(self, passband, bright=None, faint=None):
+    def set_magnitude_limit(self, passband, bright=None, faint=None):
         bright_limit = bright if bright else self.magnitude_limits[passband][0]
         faint_limit = faint if faint else self.magnitude_limits[passband][1]
 

@@ -2,3 +2,4 @@ output/*
 !output/.gitkeep
 data/*
 !data/.gitkeep
+*.pyc

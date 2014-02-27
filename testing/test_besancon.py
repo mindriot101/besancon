@@ -130,5 +130,20 @@ class TestColourLimits(BesanconTester):
 
         assert "invalid colour: a-q" in str(err).lower()
 
+class TestLuminosityClasses(BesanconTester):
+    def test_default_classes(self):
+        assert self.b.luminosity_classes == [1, 2, 3, 4, 5, 6, 7]
+
+    def test_change_classes(self):
+        self.b.set_luminosity_clases(range(1, 6))
+        assert self.b.luminosity_classes == [1, 2, 3, 4, 5]
+
+    def test_error_with_invalid_classes(self):
+        with pytest.raises(RuntimeError) as err:
+            self.b.set_luminosity_clases([0, 1, 20])
+
+        assert "invalid classes passed" in str(err).lower()
+
+
 class TestQuery(BesanconTester):
     pass

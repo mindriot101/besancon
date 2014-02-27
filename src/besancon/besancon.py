@@ -9,6 +9,7 @@ class Besancon(object):
                 SpectralType.UPPER_LIMIT]
         self.magnitude_limits = self.setup_magnitude_limits()
         self.colour_limits = self.setup_colour_limits()
+        self.luminosity_classes = self.setup_luminosity_classes()
 
     def limit_spectral_type(self, lower=None, upper=None):
         lower_spectral_type = (SpectralType.from_string(lower) if lower
@@ -51,6 +52,12 @@ class Besancon(object):
 
         self.colour_limits[index] = (colour, lower_value, upper_value)
 
+    def set_luminosity_clases(self, classes):
+        if min(classes) <= 0 or max(classes) > 7:
+            raise RuntimeError("Invalid classes passed, must be in range 1-7")
+
+        self.luminosity_classes = classes
+
     def query(self, *args, **kwargs):
         raise RuntimeError("no email set")
 
@@ -62,6 +69,12 @@ class Besancon(object):
                 ('V-I', -99.0, 99.0),
                 ('V-K', -99.0, 99.0),
                 ]
+
+    @staticmethod
+    def setup_luminosity_classes():
+        return [1, 2, 3, 4, 5, 6, 7]
+
+
 
     @staticmethod
     def setup_magnitude_limits():

@@ -52,7 +52,7 @@ class Besancon(object):
 
         self.colour_limits[index] = (colour, lower_value, upper_value)
 
-    def set_luminosity_clases(self, classes):
+    def set_luminosity_classes(self, classes):
         if min(classes) <= 0 or max(classes) > 7:
             raise RuntimeError("Invalid classes passed, must be in range 1-7")
 

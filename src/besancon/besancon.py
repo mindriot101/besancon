@@ -62,6 +62,16 @@ class Besancon(object):
         self.luminosity_classes = classes
         return self
 
+    def build_api_spectral_type_limits(self):
+        lower, upper = self.spectral_type_limits
+        return {
+                'spectyp_min': lower.api_spectype,
+                'subspectyp_min': lower.api_subspectype,
+                'spectyp_max': upper.api_spectype,
+                'subspectyp_max': upper.api_subspectype,
+                }
+
+
     def query(self, *args, **kwargs):
         raise RuntimeError("no email set")
 

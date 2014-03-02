@@ -16,6 +16,12 @@ def default_besancon():
     q = BesanconApi(b)
     return q
 
+@pytest.fixture
+def params():
+    b = Besancon()
+    b.set_luminosity_classes([1, 2]) # Add some data to check
+    q = BesanconApi(b)
+    return q.build_params()
 
 def test_payload_construction(besancon):
     assert besancon.payload

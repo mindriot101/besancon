@@ -7,15 +7,15 @@ class BesanconApi(object):
         self.keyword_defaults = self.construct_keyword_defaults()
 
     def build_given_params(self):
-        lower, upper = self.besancon.spectral_type_limits
-
-        return {
-                'spectyp_min': lower.api_spectype,
-                'subspectyp_min': lower.api_subspectype,
-                'spectyp_max': upper.api_spectype,
-                'subspectyp_max': upper.api_subspectype,
+        payload = {
                 'lumi': self.besancon.luminosity_classes,
                 }
+
+        payload.update(
+                self.besancon.build_api_spectral_type_limits()
+                )
+
+        return payload
 
     @staticmethod
     def construct_keyword_defaults():

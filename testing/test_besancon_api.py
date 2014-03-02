@@ -28,7 +28,7 @@ def full_custom_params():
     b = (Besancon(email="test@example.com").
             limit_spectral_type("1.0", "9.5").
             set_magnitude_limit("V", 10.0, 100.0).
-            add_colour_limit(0, "J-H", 0.3).
+            add_colour_limit(0, "J-H", 0.3, 1.2).
             set_luminosity_classes([1, 2]))
     return BesanconApi(b).build_given_params()
 

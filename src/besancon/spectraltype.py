@@ -54,6 +54,15 @@ class SpectralType(object):
     def __repr__(self):
         return '.'.join(map(str, [self.spectral_class, self.spectral_subclass]))
 
+    @property
+    def api_spectype(self):
+        return int(self.reverse_map[self.spectral_class])
+
+    @property
+    def api_subspectype(self):
+        return int(self.spectral_subclass)
+
+
 
 SpectralType.LOWER_LIMIT = SpectralType("O", 0)
 SpectralType.UPPER_LIMIT = SpectralType("DA", 9)

@@ -23,8 +23,6 @@ def params():
     q = BesanconApi(b)
     return q.build_params()
 
-def test_payload_construction(besancon):
-    assert besancon.payload
 
 def test_root_url(besancon):
     assert besancon.URL == 'http://model.obs-besancon.fr/modele_form.php'

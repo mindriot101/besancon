@@ -4,11 +4,12 @@ class BesanconApi(object):
 
     def __init__(self, besancon):
         self.besancon = besancon
-        self.payload = {'lumi': [1, 2]}
         self.keyword_defaults = self.construct_keyword_defaults()
 
-    def __getitem__(self, key):
-        return self.payload[key]
+    def build_given_params(self):
+        return {
+                'lumi': self.besancon.luminosity_classes,
+                }
 
     @staticmethod
     def construct_keyword_defaults():

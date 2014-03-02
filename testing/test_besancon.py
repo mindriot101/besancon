@@ -144,6 +144,14 @@ class TestLuminosityClasses(BesanconTester):
 
         assert "invalid classes passed" in str(err).lower()
 
+def test_method_chaining():
+    b = Besancon()
+    assert (b.limit_spectral_type("1.0", "9.5").
+            set_magnitude_limit("V", 10.0, 100.0).
+            add_colour_limit(0, "J-H", 0.3).
+            set_luminosity_classes(list(range(1, 8)))) == b
+
+
 
 class TestQuery(BesanconTester):
     pass

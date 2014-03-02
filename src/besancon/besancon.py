@@ -22,6 +22,7 @@ class Besancon(object):
 
         self.spectral_type_limits = [lower_spectral_type,
                 upper_spectral_type]
+        return self
 
     def set_magnitude_limit(self, passband, bright=None, faint=None):
         bright_limit = bright if bright else self.magnitude_limits[passband][0]
@@ -31,6 +32,7 @@ class Besancon(object):
             faint_limit, bright_limit = bright_limit, faint_limit
 
         self.magnitude_limits[passband] = [bright_limit, faint_limit]
+        return self
 
     def add_colour_limit(self, index, colour, lower=None, upper=None):
         if lower is None and upper is None:
@@ -51,12 +53,14 @@ class Besancon(object):
         upper_value = upper if upper is not None else old_colour_limits[1]
 
         self.colour_limits[index] = (colour, lower_value, upper_value)
+        return self
 
     def set_luminosity_classes(self, classes):
         if min(classes) <= 0 or max(classes) > 7:
             raise RuntimeError("Invalid classes passed, must be in range 1-7")
 
         self.luminosity_classes = classes
+        return self
 
     def query(self, *args, **kwargs):
         raise RuntimeError("no email set")

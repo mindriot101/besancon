@@ -39,15 +39,11 @@ def test_root_url(besancon):
 def test_default_luminosity_classes(default_besancon):
     assert default_besancon.keyword_defaults['lumi'] == list(range(1, 8))
 
-@pytest.mark.xfail
-def test_params_construction(params):
-    keys = ['lumi', 'spectyp_min']
-    values = [[1, 2], 1]
-    for (key, value) in zip(keys, values):
-        assert params[key] == value
-
 def test_given_spectype(full_custom_params):
-    pass
+    for (key, value) in zip(['spectyp_min', 'subspectyp_min',
+        'spectyp_max', 'subspectyp_max'],
+        [1, 0, 9, 5]):
+        assert full_custom_params[key] == value
 
 def test_given_lumi(full_custom_params):
     assert full_custom_params['lumi'] == [1, 2]

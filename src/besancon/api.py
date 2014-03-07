@@ -7,12 +7,18 @@ class BesanconApi(object):
         self.keyword_defaults = self.construct_keyword_defaults()
 
     def build_given_params(self):
-        payload = {
-                'lumi': self.besancon.luminosity_classes,
-                }
+        payload = self.keyword_defaults
+
+        payload.update(
+                {'lumi': self.besancon.luminosity_classes}
+                )
 
         payload.update(
                 self.besancon.build_api_spectral_type_limits()
+                )
+
+        payload.update(
+                self.besancon.build_magnitude_limits()
                 )
 
         return payload

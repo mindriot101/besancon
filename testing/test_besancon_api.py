@@ -47,3 +47,8 @@ def test_given_spectype(full_custom_params):
 
 def test_given_lumi(full_custom_params):
     assert full_custom_params['lumi'] == [1, 2]
+
+def test_magnitude_limits(full_custom_params):
+    assert full_custom_params['oo'] == [10.0] + [-99] * 8
+    assert full_custom_params['ff'] == [100.0] + [99] * 8
+    

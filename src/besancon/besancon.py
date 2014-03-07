@@ -71,6 +71,14 @@ class Besancon(object):
                 'subspectyp_max': upper.api_subspectype,
                 }
 
+    def build_magnitude_limits(self):
+        original_limits = self.magnitude_limits
+        order = ['V', 'U', 'B', 'R', 'I', 'J', 'K', 'H', 'L']
+        return {
+                'oo': [original_limits[key][0] for key in order],
+                'ff': [original_limits[key][1] for key in order],
+                }
+
 
     def query(self, *args, **kwargs):
         raise RuntimeError("no email set")

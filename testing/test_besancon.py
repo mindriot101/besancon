@@ -169,9 +169,9 @@ def build_besancon():
             set_luminosity_classes([1, 2]))
     return b
 
+@pytest.mark.skipif(True, reason="I don't want hundreds of emails")
 def test_query(build_besancon):
     result = build_besancon.query(lat=20.3, long=51.2, area=2.0)
     assert result.status_code == 200
-    print result.text
 
 

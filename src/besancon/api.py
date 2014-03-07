@@ -21,6 +21,10 @@ class BesanconApi(object):
                 self.besancon.build_magnitude_limits()
                 )
 
+        payload.update(
+                self.besancon.update_colours()
+                )
+
         return payload
 
     @staticmethod

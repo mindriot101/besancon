@@ -49,6 +49,7 @@ def test_given_lumi(full_custom_params):
     assert full_custom_params['lumi'] == [1, 2]
 
 def test_magnitude_limits(full_custom_params):
-    assert full_custom_params['oo'] == [10.0] + [-99] * 8
-    assert full_custom_params['ff'] == [100.0] + [99] * 8
+    assert full_custom_params['oo'] == [10.] + [-99] * 8 + [0.3, -99, -99, -99]
+    assert full_custom_params['ff'] == [100.0] + [99] * 8 + [1.2, 99, 99, 99]
+    assert full_custom_params['colind'] == ['J-H', 'U-B', 'V-I', 'V-K']
     

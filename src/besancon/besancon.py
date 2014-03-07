@@ -74,10 +74,21 @@ class Besancon(object):
     def build_magnitude_limits(self):
         original_limits = self.magnitude_limits
         order = ['V', 'U', 'B', 'R', 'I', 'J', 'K', 'H', 'L']
+
+        oo_keys = [original_limits[key][0] for key in order]
+        ff_keys = [original_limits[key][1] for key in order]
+
+        oo_keys.extend([row[1] for row in self.colour_limits])
+        ff_keys.extend([row[2] for row in self.colour_limits])
+
         return {
-                'oo': [original_limits[key][0] for key in order],
-                'ff': [original_limits[key][1] for key in order],
+                'oo': oo_keys,
+                'ff': ff_keys,
                 }
+
+    def update_colours(self):
+        return {'colind': [row[0] for row in self.colour_limits]}
+
 
 
     def query(self, *args, **kwargs):

@@ -53,3 +53,4 @@ def test_magnitude_limits(full_custom_params):
     assert full_custom_params['ff'] == [100.0] + [99] * 8 + [1.2, 99, 99, 99]
     assert full_custom_params['colind'] == ['J-H', 'U-B', 'V-I', 'V-K']
     
+

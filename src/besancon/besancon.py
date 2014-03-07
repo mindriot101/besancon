@@ -1,6 +1,7 @@
 from .spectraltype import SpectralType
+from .api import BesanconApi
 from .colour import Colour
-
+import requests
 
 class Besancon(object):
     def __init__(self, email=None):
@@ -89,10 +90,28 @@ class Besancon(object):
     def update_colours(self):
         return {'colind': [row[0] for row in self.colour_limits]}
 
+    def query(self, lat, long, area):
+        if not self.email:
+            raise RuntimeError("No email set")
 
+        params = BesanconApi(self).build_given_params()
+        params.update({
+            'latit': lat,
+            'longit': long,
+            'soli': area,
+            'email': self.email,
+            })
 
-    def query(self, *args, **kwargs):
-        raise RuntimeError("no email set")
+        # Flatten the arrays (from astroquery)
+        for _ in xrange(2):  # deal with nested lists
+            for k,v in params.items():
+                if isinstance(v,list) or (isinstance(v,tuple) and len(v) > 1):
+                    if k in params:
+                        del params[k]
+                    for ii,x in enumerate(v):
+                        params['%s[%i]' % (k,ii)] = x
+
+        return requests.post(BesanconApi.URL, data=params)
 
     @staticmethod
     def setup_colour_limits():

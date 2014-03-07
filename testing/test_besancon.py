@@ -160,6 +160,18 @@ def test_method_chaining():
             set_luminosity_classes(list(range(1, 8)))) == b
 
 
+@pytest.fixture
+def build_besancon():
+    b = (Besancon(email="s.r.walker101@googlemail.com").
+            limit_spectral_type("1.0", "9.5").
+            set_magnitude_limit("V", 10.0, 100.0).
+            add_colour_limit(0, "J-H", 0.3, 1.2).
+            set_luminosity_classes([1, 2]))
+    return b
 
-class TestQuery(BesanconTester):
-    pass
+def test_query(build_besancon):
+    result = build_besancon.query(lat=20.3, long=51.2, area=2.0)
+    assert result.status_code == 200
+    print result.text
+
+
